@@ -1,0 +1,14 @@
+.search_input{
+
+}
+
+.search_button{
+
+}
+
+.search{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}

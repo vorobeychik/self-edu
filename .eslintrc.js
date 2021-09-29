@@ -10,6 +10,7 @@ module.exports = {
         "import/no-cycle":"off",
         "@typescript-eslint/space-infix-ops":"off",
         "import/extensions": "off",
+        "react/jsx-filename-extension": "off",
     },
     plugins: ["import"],
 };

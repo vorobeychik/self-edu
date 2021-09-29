@@ -6,3 +6,5 @@ export const store = configureStore({
     app:appSlice,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
