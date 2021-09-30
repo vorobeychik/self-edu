@@ -4,10 +4,13 @@ import { RootState } from './store';
 import { VideoType } from '../types/types';
 
 
+
+
 export const searchVideos:any = createAsyncThunk(
   'app/fetchVideos',
-  async (query:string) => {
-    return getVideos(query);
+  async ({ query, searchMode }:{ query: string, searchMode: SearchMode }) => {
+    const videos = await getVideos(query);
+    return { videos, searchMode };
   },
 );
 
@@ -21,6 +24,11 @@ const initialState:AppInitialState = {
   videos: [],
 };
 
+export enum SearchMode{
+  Add = 'Add',
+  Insert = 'Insert',
+}
+
 const appSlice = createSlice({
   name: 'app',
   initialState,
@@ -30,8 +38,13 @@ const appSlice = createSlice({
     },
   },
   extraReducers:{
-    [searchVideos.fulfilled]: (state:AppInitialState, action:PayloadAction<VideoType[]> ) => {
-      state.videos = action.payload;
+    [searchVideos.fulfilled]: (state:AppInitialState, action:PayloadAction<{ videos:VideoType[], searchMode: SearchMode }> ) => {
+      if (action.payload.searchMode === SearchMode.Insert){
+        state.videos = action.payload.videos;
+      } else {
+        state.videos = [...state.videos, ... action.payload.videos];
+      }
+
     },
   },
 });

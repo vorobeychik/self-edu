@@ -16,7 +16,9 @@ const Video = ({ video }:VideoProps) => {
                 />
             </a>
             <div className={styles.video_description}>
-                <img src={ video.channel.snippet.thumbnails.medium.url} className={styles.channel_icon}/>
+                <a href={'https://www.youtube.com/channel/UCz7ttPTNO_S1PS9rNsCt_iA'}>
+                    <img src={ video.channel.snippet.thumbnails.medium.url} className={styles.channel_icon}/>
+                </a>
                 <div className={styles.video_description_text}>
                     <a href={`https://www.youtube.com/watch?v=${video.id}`}>
                         <p className={styles.video_title}>{ video.snippet.title }</p>

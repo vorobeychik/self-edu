@@ -1,3 +1,7 @@
+a{
+    text-decoration: none;
+}
+
 .video{
     width: calc(100% / var(--amount) - 20px);
     cursor: pointer;
@@ -32,6 +36,7 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     text-decoration: none;
+    color: black;
 }
 
 .video_channel_name{

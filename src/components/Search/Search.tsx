@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from './Search.module.css';
 import { useDispatch } from 'react-redux';
-import { searchVideos, setQuery } from '../../redux/appSlice';
+import { SearchMode, searchVideos, setQuery } from '../../redux/appSlice';
 
 const Search = () => {
   let [inputState, setInputState] = useState('');
   const dispatch = useDispatch();
 
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>){
+  const changeHandler = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setInputState(event.target.value);
-  }
+  }, []);
 
-  function searchHandler(){
+  const searchHandler = useCallback(() => {
     dispatch(setQuery(inputState));
-    dispatch(searchVideos(inputState));
-  }
+    dispatch(searchVideos({ query: inputState, searchMode: SearchMode.Insert }));
+  }, []);
 
-  function keyDownHandler(event: React.KeyboardEvent<HTMLDivElement>){
+  const keyDownHandler = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.keyCode === 13){
       dispatch(setQuery(inputState));
-      dispatch(searchVideos(inputState));
+      dispatch(searchVideos({ query: inputState, searchMode: SearchMode.Insert }));
     }
-  }
+  }, []);
 
 
   return (
