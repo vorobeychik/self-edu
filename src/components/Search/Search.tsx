@@ -11,24 +11,30 @@ const Search = () => {
     setInputState(event.target.value);
   }, []);
 
-  const searchHandler = useCallback(() => {
+  function searchHandler(){
     dispatch(setQuery(inputState));
-    dispatch(searchVideos({ query: inputState, searchMode: SearchMode.Insert }));
-  }, []);
+    dispatch(searchVideos({ query: inputState, searchMode: SearchMode.Insert, page: '' }));
+  }
 
-  const keyDownHandler = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
+  function keyDownHandler(event: React.KeyboardEvent<HTMLDivElement>){
     if (event.keyCode === 13){
       dispatch(setQuery(inputState));
-      dispatch(searchVideos({ query: inputState, searchMode: SearchMode.Insert }));
+      dispatch(searchVideos({ query: inputState, searchMode: SearchMode.Insert, page: '' }));
     }
-  }, []);
+  }
 
 
   return (
+      <div>
         <div className={styles.search} onKeyDown={keyDownHandler}>
-            <input type="text" value={inputState} onChange={changeHandler} className={styles.search_input} data-testid="search"/>
-            <button className={styles.search_button} onClick={searchHandler} data-testid="search-button">Search</button>
+          <input type="text" value={inputState} onChange={changeHandler} className={styles.search_input} data-testid="search"/>
+          <button className={styles.search_button} onClick={searchHandler} data-testid="search-button">Search</button>
         </div>
+        <div className={styles.fakeSearch}>
+
+        </div>
+      </div>
+
   );
 };
 

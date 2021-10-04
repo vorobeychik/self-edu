@@ -6,6 +6,11 @@
     min-width: 300px;
 }
 
+.loading{
+    margin: 0 auto;
+    font-size: 24px;
+}
+
 .videos_container{
   display: flex;
   flex-wrap: wrap;

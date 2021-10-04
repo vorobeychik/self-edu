@@ -6,6 +6,7 @@ a{
     width: calc(100% / var(--amount) - 20px);
     cursor: pointer;
     margin: 10px;
+
 }
 
 .channel_icon{
@@ -13,16 +14,16 @@ a{
     height: 36px;
     border-radius: 45%;
     margin-right: 10px;
+    margin-top: 50%;
 }
 
 .video_description{
     display: flex;
-    align-items: center;
 }
 
 .video_preview{
     width: 100%;
-
+    height: 65%;
 }
 
 .video_title{
