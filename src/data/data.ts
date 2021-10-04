@@ -20,6 +20,7 @@ export const testVideo:VideoType = {
     likeCount: 123123,
   },
   channel:{
+    id: 'asdasd',
     snippet:{
       title: 'learn js',
       thumbnails:{
