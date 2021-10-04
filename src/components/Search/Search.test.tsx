@@ -1,5 +1,5 @@
 import Search  from './Search';
-import { fireEvent, render } from '@testing-library/react';
+import {  render } from '@testing-library/react';
 import React from 'react';
 import { store } from '../../redux/store';
 import { Provider } from 'react-redux';

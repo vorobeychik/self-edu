@@ -10,7 +10,7 @@ describe('Video component', () => {
           <Provider store={store}>
               <Video video={testVideo} />
           </Provider>);
-
-
+    const video = getByTestId('video');
+    expect(video).toMatchSnapshot();
   });
 });

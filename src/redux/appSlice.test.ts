@@ -1,9 +1,5 @@
-import reducer, { setQuery } from './appSlice';
+import reducer, { initialState, setQuery } from './appSlice';
 
-const initialState = {
-  query: '',
-  videos: [],
-};
 
 test('should return the initial state', () => {
   expect(reducer(undefined, { type:'init' })).toEqual(

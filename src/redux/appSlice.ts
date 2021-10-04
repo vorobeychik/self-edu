@@ -15,14 +15,14 @@ export const searchVideos:any = createAsyncThunk(
   },
 );
 
-type AppInitialState = {
+export type AppInitialState = {
   videos: VideoType[],
   query: string,
   page: string,
   isLoading: boolean,
 };
 
-const initialState:AppInitialState = {
+export const initialState:AppInitialState = {
   query: '',
   videos: [],
   page: '',
@@ -52,6 +52,9 @@ const appSlice = createSlice({
     },
     [searchVideos.pending]:(state:AppInitialState) => {
       state.isLoading = true;
+    },
+    [searchVideos.rejected]:(state: AppInitialState) => {
+      state.isLoading = false;
     },
   },
 });

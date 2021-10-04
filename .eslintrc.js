@@ -3,6 +3,7 @@ module.exports = {
     parserOptions: {
         project: './tsconfig.json',
     },
+    ignorePatterns: ['jest.setup.ts'],
     rules: {
         "no-underscore-dangle":"off",
         "import/prefer-default-export":"off",

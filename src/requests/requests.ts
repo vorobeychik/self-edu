@@ -3,7 +3,7 @@ import { Channel, VideoId, VideoType } from '../types/types';
 
 
 const link = 'https://youtube.googleapis.com/youtube/v3/';
-const apiKey = 'AIzaSyBsWryzykEdGaOZviswelvN9-2sAiKX7x4';
+const apiKey = process.env.REACT_APP_API_KEY;
 
 enum RequestTypes{
   Snippet = 'snippet',
