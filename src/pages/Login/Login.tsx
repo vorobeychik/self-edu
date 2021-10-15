@@ -7,11 +7,8 @@ import { userAuth } from '../../requests/requests';
 
 const Login = () => {
   useEffect(() => {
-    console.log(location.search);
-    const [argument, argumentValue] = location.search.split('=');
-    console.log(argument, argumentValue);
     (async () => {
-      const res = await userAuth(argumentValue);
+      const res = await userAuth();
       console.log(res);
     })();
 
@@ -26,9 +23,9 @@ const Login = () => {
                     shape="round"
                     size={'large'}
                     icon={<LoginOutlined />}
-                    href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GIT_HUB_APP_ID}`}
+                    href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GIT_HUB_APP_ID}&scope=user&redirect_uri=http://localhost:4000/api/auth/github`}
                 >
-                    Login
+                    Logins
                 </Button>
         </div>
   );
