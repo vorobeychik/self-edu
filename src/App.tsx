@@ -16,7 +16,6 @@ function App() {
   const videosElements = useMemo(() => videos.map((video:VideoType) => <Video video={video} key={video.id}/>), [videos]);
 
   useEffect(() => {
-    console.log('переюзas');
     function listner(){
 
       if (document.documentElement.clientHeight + window.pageYOffset === document.body.clientHeight && !isLoading){
@@ -24,14 +23,13 @@ function App() {
       }
     }
 
-
     window.addEventListener('scroll', listner);
 
     return () => window.removeEventListener('scroll', listner);
   }, [query, page, isLoading]);
 
   return (
-    <div className="app_container" onScroll={() => console.log(1)}>
+    <div className="app_container" >
       <Search />
       <div className={styles.videos_container} data-testid="video-container" >
         {videosElements}
