@@ -3,7 +3,7 @@ import styles from './Search.module.css';
 import { useDispatch } from 'react-redux';
 import { SearchMode, searchVideos, setQuery } from '../../redux/appSlice';
 
-const Search = () => {
+export const Search = () => {
   let [inputState, setInputState] = useState('');
   const dispatch = useDispatch();
 
@@ -38,4 +38,3 @@ const Search = () => {
   );
 };
 
-export default Search;

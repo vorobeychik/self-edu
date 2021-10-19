@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import styles from './App.module.css';
-import Search from './components/Search/Search';
+import { Search } from './components/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import { SearchMode, searchVideos, selectIsLoading, selectQueryAndPage, selectVideos } from './redux/appSlice';
 import Video from './components/Video/Video';
@@ -33,8 +33,8 @@ function App() {
       <Search />
       <div className={styles.videos_container} data-testid="video-container" >
         {videosElements}
-        {isLoading && <p className={styles.loading}> Загрузка...</p>}
       </div>
+      {isLoading && <p className={styles.loading}> Загрузка...</p>}
     </div>
   );
 }
