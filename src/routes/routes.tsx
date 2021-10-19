@@ -3,11 +3,27 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  // Redirect,
+  Redirect,
 } from 'react-router-dom';
+import { store } from '../store/store';
 import Login from '../pages/Login/Login';
+import { observer } from 'mobx-react-lite';
 
-const Routes = () => {
+const Routes = observer(() => {
+
+  if (!store.auth.isAuth){
+    return (
+          <Router>
+              <Switch>
+                  <Route path={'/'} exact>
+                      <Login />
+                  </Route>
+                  <Redirect to={'/'} />
+              </Switch>
+          </Router>
+    );
+  }
+
   return (
         <Router>
             <Switch>
@@ -18,6 +34,9 @@ const Routes = () => {
             </Switch>
         </Router>
   );
-};
+
+
+
+});
 
 export default Routes;

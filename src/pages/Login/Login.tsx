@@ -5,6 +5,7 @@ import { LoginOutlined, UserOutlined } from '@ant-design/icons';
 import { userAuth } from '../../requests/requests';
 
 
+
 const Login = () => {
   useEffect(() => {
     (async () => {
@@ -23,9 +24,9 @@ const Login = () => {
                     shape="round"
                     size={'large'}
                     icon={<LoginOutlined />}
-                    href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GIT_HUB_APP_ID}&scope=user&redirect_uri=http://localhost:4000/api/auth/github`}
+                    href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GIT_HUB_APP_ID}&scope=user&redirect_uri=http://localhost:4000/api/user/auth`}
                 >
-                    Logins
+                    Login
                 </Button>
         </div>
   );
