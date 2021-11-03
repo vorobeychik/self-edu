@@ -5,38 +5,35 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 import { store } from '../store/store';
 import Login from '../pages/Login/Login';
-import { observer } from 'mobx-react-lite';
+import Main from '../pages/Main/Main';
 
 const Routes = observer(() => {
-
-  if (!store.auth.isAuth){
+  if (!store.isAuth) {
     return (
-          <Router>
-              <Switch>
-                  <Route path={'/'} exact>
-                      <Login />
-                  </Route>
-                  <Redirect to={'/'} />
-              </Switch>
-          </Router>
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <Login />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </Router>
     );
   }
 
   return (
-        <Router>
-            <Switch>
-                <Route path={'/'} exact>
-                    <Login />
-                </Route>
-                {/*<Redirect to={'/login'} />*/}
-            </Switch>
-        </Router>
+    <Router>
+      <Switch>
+        <Route path="/" exact>
+          <Main />
+        </Route>
+        <Redirect to="/" />
+      </Switch>
+    </Router>
   );
-
-
-
 });
 
 export default Routes;

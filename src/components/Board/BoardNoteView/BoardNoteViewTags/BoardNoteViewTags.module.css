@@ -1,0 +1,22 @@
+.tags_container{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.container{
+    display: flex;
+    width: 70%;
+}
+
+.container:hover{
+    cursor: pointer;
+    background-color: #efefef;
+}
+
+.input{
+    margin-left: 1%;
+    outline: none;
+    border: none;
+    background-color: inherit;
+}

@@ -1,0 +1,22 @@
+.add_button{
+     border: none;
+     background-color: inherit;
+     color: hsl(87,1%, 41%);
+     padding: 2% 0.5%;
+     font-size: 16px;
+     outline: none;
+}
+.add_button:hover{
+    cursor: pointer;
+}
+
+.add_button_container{
+    display: flex;
+    align-items: center;
+    padding: 2% 4%;
+}
+
+.add_button_container:hover {
+    cursor: pointer;
+    background-color: gainsboro;
+}

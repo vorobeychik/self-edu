@@ -1,35 +1,62 @@
-import styles from './Login.module.css';
 import React, { useEffect } from 'react';
-import { Avatar, Button } from 'antd';
-import { LoginOutlined, UserOutlined } from '@ant-design/icons';
-import { userAuth } from '../../requests/requests';
+import { observer } from 'mobx-react-lite';
+import styles from './Login.module.css';
+import { store } from '../../store/store';
+import Icon from '../../components/Icon/Icon';
+import { Icons } from '../../enums/enums';
+import { authUrl } from '../../constants/const';
 
-
-
-const Login = () => {
+const Login = observer(() => {
   useEffect(() => {
     (async () => {
-      const res = await userAuth();
-      console.log(res);
+      await store.authorize();
     })();
-
   }, []);
 
+  if (store.isLoading) {
+    return (
+      <div className={styles.loader}>
+        <svg
+          style={{
+            margin: 'auto', background: 'rgb(255, 255, 255)', display: 'block', shapeRendering: 'auto', width: '100%',
+          }}
+          width="200px"
+          height="200px"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid"
+        >
+          <circle
+            cx="50"
+            cy="50"
+            r="32"
+            strokeWidth="8"
+            stroke="#c7c7c5"
+            strokeDasharray="50.26548245743669 50.26548245743669"
+            fill="none"
+            strokeLinecap="round"
+          >
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              repeatCount="indefinite"
+              dur="1s"
+              keyTimes="0;1"
+              values="0 50 50;360 50 50"
+            />
+          </circle>
+        </svg>
+      </div>
+    );
+  }
 
   return (
-        <div className={styles.login}>
-          <Avatar icon={<UserOutlined />} size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}/>
-                <Button
-                    type="primary"
-                    shape="round"
-                    size={'large'}
-                    icon={<LoginOutlined />}
-                    href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GIT_HUB_APP_ID}&scope=user&redirect_uri=http://localhost:4000/api/user/auth`}
-                >
-                    Login
-                </Button>
-        </div>
+    <div className={styles.login}>
+      <Icon iconType={Icons.User} iconSize={70} />
+      <a href={authUrl}>
+        <button className={styles.login_button}>Login</button>
+      </a>
+    </div>
   );
-};
+});
 
 export default Login;

@@ -1,5 +1,8 @@
 const axios = require("axios");
 const userModel = require('./user.model');
+const mongoose = require('mongoose');
+const { createBoard } = require('../boards/board.service');
+const { getBoards } = require('../boards/board.service');
 
 class UserService{
 
@@ -27,14 +30,27 @@ class UserService{
     }
 
     async getUser(gitHubId){
-        console.log('gitHubId',gitHubId)
-        return userModel.findOne({ gitHubId })
+        return  userModel.findOne({ gitHubId });
+    }
+
+    async getUserBoards(gitHubId){
+        const user = await this.getUser(gitHubId);
+        const userBoards = await getBoards(user.boards);
+        return  {_id: user._id, boards: userBoards};
     }
 
     async createUser(gitHubId){
-        return userModel.create({ gitHubId })
+        return userModel.create({ gitHubId, })
     }
 
+    async addBoard( userId, boardId){
+        await userModel.updateOne({ _id: userId} , { $push: {boards: boardId }})
+    }
+
+    async removeBoard(userId, boardId){
+       const user = await userModel.findOne({_id: userId})
+       const updated = await userModel.updateOne({_id: userId}, { $pull:{ boards: boardId} })
+    }
 }
 
 

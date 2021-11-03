@@ -1,0 +1,65 @@
+.note{
+    border: 1px solid rgb(233, 233, 231);
+    border-radius: 5px;
+    padding: 5%;
+}
+
+.note:hover{
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2%;
+    height: 25%;
+ }
+
+.note_paragraph{
+    font-size: 14px;
+    height: 20%;
+}
+
+.icon{
+    width: 100%;
+}
+
+.icon_container_title{
+    width: 5.5%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.icon_container_title:hover{
+    cursor: pointer;
+
+    background-color: #efefef;
+}
+
+.property{
+    font-size: 0.8rem;
+    padding: 2% 0;
+    word-break: break-all;
+}
+
+.comment_container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 1% 0;
+}
+
+.comments_amount{
+   font-size: 0.8rem;
+   color: #d6d5d4;
+    margin-left: 3%;
+}
+
+.comment_icon_container{
+    width: 8%;
+    display: flex;
+    align-items: center;
+}
