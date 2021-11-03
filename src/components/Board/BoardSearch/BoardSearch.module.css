@@ -1,0 +1,27 @@
+.paragraph{
+    color: #a7a6a3;
+    font-size: 16px;
+    margin-left: 0.5%;
+}
+
+.search_container{
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 0.5%;
+}
+
+.search_container:hover{
+    cursor: pointer;
+    background-color: #efefef;
+}
+
+.input{
+    outline: none;
+    border: none;
+    padding: 1.5px 0;
+    color: #757575;
+    background-color: inherit;
+    font-size: 16px;
+    margin-left: 0.5%;
+}

@@ -1,0 +1,13 @@
+.input{
+    outline: none;
+    border: none;
+    font-family: var(--font-family);
+}
+
+.container{
+    overflow: hidden;
+}
+
+.paragraph{
+    display: inline;
+}

@@ -1,0 +1,21 @@
+.board_title_container{
+    padding: 2% 4%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.board_title_container:hover{
+    cursor: pointer;
+    background-color: gainsboro;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+}
+
+.board_title_paragraph{
+    margin-left: 1.5%;
+    color: hsl(87,1%, 41%);
+}

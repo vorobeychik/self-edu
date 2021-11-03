@@ -1,0 +1,107 @@
+.side_bar{
+    position: relative;
+    width: 25%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(247, 246, 243);;
+}
+
+.log_out_container{
+    display: flex;
+    align-items: center;
+    justify-self: flex-end;
+    position: absolute;
+    bottom: 0;
+    padding: 5% 3%;
+    width: 100%;
+}
+
+.log_out_container:hover{
+    cursor: pointer;
+    background-color: gainsboro;
+}
+
+.user_icon_container{
+    width: 16px;
+    height: 16px;
+}
+
+.user_profile{
+    display: flex;
+    padding: 4%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.user_profile:hover{
+    cursor: pointer;
+    background-color: gainsboro;
+}
+
+.board_titles_container{
+    display: flex;
+    flex-direction: column;
+    padding: 3% 0;
+    max-height: 80%;
+    overflow-y: scroll;
+}
+
+
+
+.username{
+ margin-left: 3%;
+
+}
+
+.user_icon{
+    width: 100%;
+    border-radius: 20%;
+}
+
+.log_out_paragraph{
+    color: hsl(87,1%, 41%);
+    margin-left: 3%;
+}
+
+.board_titles_container::-webkit-scrollbar{
+    width: 0;
+}
+
+.board_titles_container::-webkit-scrollbar-thumb{
+    width: 0;
+}
+
+.side_bat_open_icon{
+    margin: calc(5px + 1%) 0 0 calc(5px + 1%);
+}
+
+.user_info{
+    display: flex;
+    width: 100%
+}
+
+
+
+@media (max-width: 769px) {
+    .side_bar{
+        position: absolute;
+        width: 35%;
+    }
+}
+
+@media (max-width: 426px) {
+    .side_bar{
+        position: absolute;
+        width: 45%;
+    }
+}
+
+@media (max-width: 320px) {
+    .side_bar{
+        position: absolute;
+        width: 60%;
+    }
+}

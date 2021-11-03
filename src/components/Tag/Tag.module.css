@@ -1,0 +1,32 @@
+.tag_container{
+    border-radius: 3px;
+    align-items: center;
+    padding: 0.4vh calc(1% + 1vh);
+    display: inline-block;
+    margin-right: 1%;
+    vertical-align: middle;
+}
+
+.tag_paragraph{
+    font-size: 0.8rem;
+}
+
+.container{
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.icon{
+    width: 100%;
+}
+
+.icon_container{
+    width: 16px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-self: flex-end;
+}
+

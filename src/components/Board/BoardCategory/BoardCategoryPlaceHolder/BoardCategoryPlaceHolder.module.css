@@ -1,0 +1,8 @@
+.placeholder{
+    height: 0.7vh;
+}
+
+.placeholder_active{
+    height: 0.7vh;
+    background-color: #8dcbe4;
+}
