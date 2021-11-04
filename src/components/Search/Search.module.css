@@ -1,0 +1,36 @@
+.search_input{
+    padding: 10px;
+    border: solid 1px gray;
+    border-right: none;
+    border-radius: 5px  0  0 5px;
+    outline: none;
+    font-size: 1rem;
+    color: gray;
+
+}
+
+.fake_search{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+
+}
+
+.search_button{
+    border-radius: 0 5px 5px 0;
+    padding: 0 5px;
+    border: solid 1px gray;
+    background-color: white;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+}
