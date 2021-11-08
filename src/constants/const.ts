@@ -54,6 +54,8 @@ export const bigIconSize = 26;
 export const largeIconSize = 30;
 export const avatarIconSize = 70;
 
+export const standardPath = '/';
+
 export const propertyTitle = 'Property';
 export const noTitle = 'No title';
 

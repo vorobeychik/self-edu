@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { isUserUsePhone } from '../utils/utils';
 
 export function useHover() {
-  const [isHover, setIsHoverd] = useState(false);
+  const [isHover, setIsHover] = useState(false);
   const isPhoneUsed = isUserUsePhone();
 
   function onMouseEnter() {
-    setIsHoverd(true);
+    setIsHover(true);
   }
 
   function onMouseLeave() {
-    setIsHoverd(false);
+    setIsHover(false);
   }
 
   return { isHover: isHover || isPhoneUsed, mouseHoverEvents: { onMouseEnter, onMouseLeave } };
