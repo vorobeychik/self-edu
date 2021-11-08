@@ -7,12 +7,13 @@ import { store } from '../../../../store/store';
 import Icon from '../../../Icon/Icon';
 import { Icons } from '../../../../enums/enums';
 import { useHover } from '../../../../hooks/useHover';
+import { commonIconSize } from '../../../../constants/const';
 
 interface BoardNoteViewPropertyProps{
   property: Property
 }
 
-const BoardNoteViewProperty = observer(({ property }:BoardNoteViewPropertyProps) => {
+const BoardNoteViewProperty = observer(({ property }: BoardNoteViewPropertyProps) => {
   const { isHover, mouseHoverEvents } = useHover();
 
   function deletePropertyClickHandler() {
@@ -37,7 +38,7 @@ const BoardNoteViewProperty = observer(({ property }:BoardNoteViewPropertyProps)
           inputClassName={styles.input}
         />
       </div>
-      <Icon iconType={Icons.Bin} iconSize={16} isHidden={!isHover} canHovered onClick={deletePropertyClickHandler} />
+      <Icon iconType={Icons.Bin} iconSize={commonIconSize} isHidden={!isHover} canHovered onClick={deletePropertyClickHandler} />
     </div>
   );
 });

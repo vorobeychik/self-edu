@@ -33,13 +33,13 @@
     font-size: 0.9rem;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
     .icon_container{
         width: 4.2%;
     }
 }
 
-@media (max-width: 426px) {
+@media (max-width: 425px) {
     .icon_container{
         width: 6%;
     }

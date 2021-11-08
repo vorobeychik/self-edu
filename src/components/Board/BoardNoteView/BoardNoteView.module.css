@@ -143,7 +143,7 @@
     background-color: #f3f3f3;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
     .new_note_button{
         width: 45%;
     }
@@ -193,7 +193,7 @@
     }
 }
 
-@media (max-width: 321px) {
+@media (max-width: 320px) {
     .new_note_button{
         width: 80%;
     }

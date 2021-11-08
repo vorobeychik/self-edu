@@ -49,7 +49,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
     .board_title{
         font-size: 2rem;
     }

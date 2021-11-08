@@ -1,51 +1,70 @@
 import axios, { AxiosResponse } from 'axios';
 import { Board, User } from '../types/types';
-import {devServerUrl, prodServerUrl} from "../constants/const";
+import { developmentMode, devServerUrl, prodServerUrl } from '../constants/const';
 
+interface UpdateBoardBody{ board: Board }
+interface CreateBoardBody{ board: Board, userId: string }
+interface DeleteBoardBody{ userId: string, boardId: string }
 
-const serverUrl = process.env.NODE_ENV === 'development' ? devServerUrl : prodServerUrl;
+const serverUrl = process.env.NODE_ENV === developmentMode ? devServerUrl : prodServerUrl;
 
-export async function userAuth():Promise<User> {
-  const res = await axios.get(
-    `${serverUrl}/user`,
-    {
-      withCredentials: true,
-    },
-  );
-  return res.data;
+export async function userAuth(): Promise<User | null> {
+  try {
+    const res = await axios.get(
+      `${serverUrl}/user`,
+      {
+        withCredentials: true,
+      },
+    );
+    return res.data;
+  } catch (error) {
+    return null;
+  }
 }
 
-export async function createBoard(board:Board, userId:string):Promise<Board> {
-  const response = await axios.post<{ board: Board, userId: string }, AxiosResponse<Board>>(
-    `${serverUrl}/board/create`,
-    {
-      userId,
-      board,
-    },
-  );
+export async function createBoard(board: Board, userId: string): Promise<Board | null> {
+  try {
+    const response = await axios.post<CreateBoardBody, AxiosResponse<Board>>(
+      `${serverUrl}/board/create`,
+      {
+        userId,
+        board,
+      },
+    );
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    return null;
+  }
 }
 
-export async function updateBoard(board: Board) {
-  const response = await axios.post<{ board: Board }, AxiosResponse<Board>>(
-    `${serverUrl}/board/update`,
-    {
-      board,
-    },
-  );
+export async function updateBoard(board: Board): Promise<string | null> {
+  try {
+    const response = await axios.post<UpdateBoardBody, AxiosResponse<string>>(
+      `${serverUrl}/board/update`,
+      {
+        board,
+      },
+    );
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    return null;
+  }
 }
 
-export async function deleteBoard(userId: string, boardId: string) {
-  const response = await axios.post<{ userId: string, boardId: string }, AxiosResponse<Board>>(
-    `${serverUrl}/board/delete`,
-    {
-      boardId,
-      userId,
-    },
-  );
+export async function deleteBoard(userId: string, boardId: string): Promise<string | null> {
+  try {
+    const response = await axios.post<DeleteBoardBody, AxiosResponse<string>>(
+      `${serverUrl}/board/delete`,
+      {
+        boardId,
+        userId,
+      },
+    );
 
-  return response.data;
+    return response.data;
+  } catch (error) {
+    return null;
+  }
 }

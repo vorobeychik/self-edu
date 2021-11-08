@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import styles from './EditableParagraph.module.css';
+import { emptyTitle, enterKey } from '../../constants/const';
 
 interface EditableParagraphProps{
   title: string,
@@ -13,15 +14,19 @@ interface EditableParagraphProps{
 
 const EditableParagraph = observer(({
   title, callBack, className, inputClassName, maxLength,
-}:EditableParagraphProps) => {
+}: EditableParagraphProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [inputState, setInputState] = useState(title);
+  const [inputState, setInputState] = useState('');
+
+  useEffect(() => {
+    setInputState(title);
+  }, []);
 
   function inputBlurHandler() {
     if (inputState !== '') {
       callBack(inputState);
     } else {
-      callBack('Empty');
+      callBack(emptyTitle);
     }
   }
 
@@ -30,11 +35,11 @@ const EditableParagraph = observer(({
   }
 
   function keyDownHandler(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === 'Enter') {
+    if (event.key === enterKey) {
       if (inputState !== '') {
         callBack(inputState);
       } else {
-        callBack('Empty');
+        callBack(emptyTitle);
       }
       inputRef.current!.blur();
     }

@@ -4,12 +4,13 @@ import styles from './BoardNoteViewTags.module.css';
 import { store } from '../../../../store/store';
 import { Tag as TagType } from '../../../../types/types';
 import Tag from '../../../Tag/Tag';
+import { enterKey } from '../../../../constants/const';
 
 interface BoardNoteViewTagsProps{
   tags: TagType[],
 }
 
-const BoardNoteViewTags = observer(({ tags }:BoardNoteViewTagsProps) => {
+const BoardNoteViewTags = observer(({ tags }: BoardNoteViewTagsProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [inputState, setInputState] = useState('');
@@ -27,7 +28,7 @@ const BoardNoteViewTags = observer(({ tags }:BoardNoteViewTagsProps) => {
   }
 
   function keyDownHandler(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === 'Enter') {
+    if (event.key === enterKey) {
       store.addTag(inputState);
       setInputState('');
       setIsEditing(false);

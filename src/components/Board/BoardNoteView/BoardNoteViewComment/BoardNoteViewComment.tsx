@@ -6,12 +6,13 @@ import { store } from '../../../../store/store';
 import Icon from '../../../Icon/Icon';
 import { Icons } from '../../../../enums/enums';
 import { useHover } from '../../../../hooks/useHover';
+import { commonIconSize } from '../../../../constants/const';
 
 interface BoardNoteViewCommentProps{
   comment: Comments
 }
 
-const BoardNoteViewComment = observer(({ comment }:BoardNoteViewCommentProps) => {
+const BoardNoteViewComment = observer(({ comment }: BoardNoteViewCommentProps) => {
   const { isHover, mouseHoverEvents } = useHover();
 
   function deleteCommentClickHandler() {
@@ -31,7 +32,7 @@ const BoardNoteViewComment = observer(({ comment }:BoardNoteViewCommentProps) =>
       </div>
       {
        isHover
-         ? <Icon iconType={Icons.Bin} iconSize={16} canHovered onClick={deleteCommentClickHandler} />
+         ? <Icon iconType={Icons.Bin} iconSize={commonIconSize} canHovered onClick={deleteCommentClickHandler} />
          : null
       }
     </div>

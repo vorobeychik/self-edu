@@ -85,14 +85,14 @@
 
 
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
     .side_bar{
         position: absolute;
         width: 35%;
     }
 }
 
-@media (max-width: 426px) {
+@media (max-width: 425px) {
     .side_bar{
         position: absolute;
         width: 45%;

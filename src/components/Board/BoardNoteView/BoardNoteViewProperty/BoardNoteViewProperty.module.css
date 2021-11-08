@@ -52,7 +52,7 @@
 }
 
 
-@media ( max-width: 321px) {
+@media ( max-width: 320px) {
     .property_value{
         margin-left: 7%;
     }

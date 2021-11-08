@@ -14,7 +14,7 @@ interface IconProps{
 
 const Icon = ({
   iconSize, canHovered, onClick, iconType, iconContainerStyles, isHidden,
-}:IconProps) => {
+}: IconProps) => {
   const iconContainerClasses = classNames(
     styles.icon_container,
     { [styles.icon_container_active]: canHovered },
@@ -24,7 +24,7 @@ const Icon = ({
 
   return (
     <div className={iconContainerClasses} onClick={onClick} style={{ width: `${iconSize}px`, height: `${iconSize}px` }}>
-      <img className={styles.icon} src={iconType} />
+      <img className={styles.icon} src={iconType} alt="user icon" />
     </div>
   );
 };

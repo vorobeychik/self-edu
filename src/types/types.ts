@@ -9,10 +9,14 @@ export type User = {
   boards: Board[],
 };
 
+export type Year = {
+  name: number,
+  months: Month[],
+};
+
 export type Board = {
   id: string,
   name: string,
-  type: string,
   categories: Category[];
 };
 
@@ -56,4 +60,4 @@ export type PlaceHolder = {
 export type Month = {
   name: string,
   days: number[],
-}
+};

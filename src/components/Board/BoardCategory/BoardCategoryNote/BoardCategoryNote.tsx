@@ -8,6 +8,7 @@ import Tag from '../../../Tag/Tag';
 import Icon from '../../../Icon/Icon';
 
 import { Icons } from '../../../../enums/enums';
+import { mediumIconSize, smallIconSize } from '../../../../constants/const';
 
 interface BoardCategoryNoteProps{
   note: Note,
@@ -27,11 +28,10 @@ const BoardCategoryNote = observer(({ note, dragStartHandler }: BoardCategoryNot
     store.deleteNote(note);
   }
 
-  function tagClickHandler(event: React.MouseEvent<HTMLDivElement>, tag:TagType) {
+  function tagClickHandler(event: React.MouseEvent<HTMLDivElement>, tag: TagType) {
     event.stopPropagation();
     store.setTegFilter(tag);
   }
-
 
   const tags = note.tags.map((tag) => (
     <Tag
@@ -49,7 +49,7 @@ const BoardCategoryNote = observer(({ note, dragStartHandler }: BoardCategoryNot
         {isHover
           ? (
             <Icon
-              iconSize={14}
+              iconSize={mediumIconSize}
               iconType={Icons.Bin}
               onClick={deleteClickHandler}
               canHovered
@@ -64,7 +64,7 @@ const BoardCategoryNote = observer(({ note, dragStartHandler }: BoardCategoryNot
       {note.comments.length
         ? (
           <div className={styles.comment_container}>
-            <Icon iconType={Icons.Comment} iconSize={11} />
+            <Icon iconType={Icons.Comment} iconSize={smallIconSize} />
             <p className={styles.comments_amount}>{note.comments.length}</p>
           </div>
         ) : null}

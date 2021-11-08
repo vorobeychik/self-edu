@@ -4,6 +4,7 @@ import styles from './BoardSearch.module.css';
 import { store } from '../../../store/store';
 import Icon from '../../Icon/Icon';
 import { Icons } from '../../../enums/enums';
+import { mediumIconSize } from '../../../constants/const';
 
 const BoardSearch = observer(() => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -33,7 +34,7 @@ const BoardSearch = observer(() => {
 
   return (
     <div className={styles.search_container} onClick={clickHandler}>
-      <Icon iconType={Icons.Search} iconSize={14} />
+      <Icon iconType={Icons.Search} iconSize={mediumIconSize} />
       {isSearched
         ? (
           <input

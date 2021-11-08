@@ -8,6 +8,7 @@ import BoardNoteViewTags from './BoardNoteViewTags/BoardNoteViewTags';
 import BoardNoteViewProperty from './BoardNoteViewProperty/BoardNoteViewProperty';
 import Icon from '../../Icon/Icon';
 import { Icons } from '../../../enums/enums';
+import { commonIconSize, enterKey } from '../../../constants/const';
 
 const BoardNoteView = observer(() => {
   const note = store.selectedNote!;
@@ -23,7 +24,7 @@ const BoardNoteView = observer(() => {
   }
 
   function keyDownHandler(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === 'Enter') {
+    if (event.key === enterKey) {
       store.addComment(note, commentInput);
       setCommentInput('');
     }
@@ -57,7 +58,7 @@ const BoardNoteView = observer(() => {
             {properties}
           </div>
           <div onClick={addNotePropertyHandler} className={styles.new_note_button}>
-            <Icon iconSize={16} iconType={Icons.Plus} />
+            <Icon iconSize={commonIconSize} iconType={Icons.Plus} />
             <p>Add new property</p>
           </div>
           <div className={styles.comments_container}>

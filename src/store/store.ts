@@ -1,4 +1,5 @@
 import { autorun, makeAutoObservable } from 'mobx';
+import { initialState } from '../constants/const';
 import {
   Board, Category, Comments, Note, PlaceHolder, Property, Tag, User,
 } from '../types/types';
@@ -10,33 +11,25 @@ import {
   createCategoryTemplate, createComment,
   createNoteTemplate,
   createPropertyTemplate, createTagTemplate,
-  deleteAllCookies, getMonth, getYear,
+  deleteAllCookies, getMonth,
   insert, isUserUsePhone,
 } from '../utils/utils';
 
-const initialState:User = {
-  _id: '',
-  boards: [],
-  login: '',
-  id: 40301850,
-  avatar_url: 'https://avatars.githubusercontent.com/u/40301850?v=4',
-  name: 'Kirill Vorobey',
-};
-
 export class Store {
-  user:User = initialState;
+  user: User = initialState;
 
   isLoading = false;
 
   selectedNote: null | Note = null;
 
-  selectedBoardId:string = '';
+  selectedBoardId: string = '';
 
   isNoteOpen = false;
 
   searchedQuery = '';
 
-  tagFilter:Tag | null = null;
+  tagFilter: Tag | null = null;
+
   calendar = createCalendarData();
 
   isUserUsePhone = isUserUsePhone();
@@ -50,7 +43,7 @@ export class Store {
     });
   }
 
-  selectBoard(boardId:string) {
+  selectBoard(boardId: string) {
     this.tagFilter = null;
     this.selectedBoardId = boardId;
   }
@@ -62,19 +55,26 @@ export class Store {
   get searchedCategories() {
     if (this.selectedBoard) {
       return this.selectedBoard.categories
-          .map((category) => ({ ...category,
-            notes: category.notes.filter((note) => new RegExp(this.searchedQuery).test(note.title)) }));
+        .map((category) => ({
+          ...category,
+          notes: category.notes.filter((note) => new RegExp(this.searchedQuery).test(note.title)),
+        }));
     }
   }
 
-  get selectedMonth(){
+  get selectedMonth() {
     const month = getMonth();
     return this.calendar[0].months[month];
   }
 
   get notesFilterdByTag() {
     if (this.tagFilter && this.selectedBoard) {
-      return this.selectedBoard.categories.map((category) => ({ ...category, notes: category.notes.filter((note) => note.tags.some((element) => element.id === this.tagFilter!.id)) }));
+      return this.selectedBoard.categories
+        .map((category) => ({
+          ...category,
+          notes: category
+            .notes.filter((note) => note.tags.some((element) => element.id === this.tagFilter!.id)),
+        }));
     }
   }
 
@@ -96,7 +96,7 @@ export class Store {
   }
 
   get tags() {
-    const tags:Tag[] = [];
+    const tags: Tag[] = [];
     if (this.selectedBoard) {
       this.selectedBoard.categories.forEach((category) => {
         category.notes.forEach((note) => {
@@ -109,10 +109,6 @@ export class Store {
       });
       return tags;
     }
-  }
-
-  private get selectedBoardIndex() {
-    return this.user.boards.findIndex((board) => board.id === this.selectedBoard!.id);
   }
 
   openNote() {
@@ -130,11 +126,12 @@ export class Store {
 
   async deleteCategory(category: Category) {
     if (this.selectedBoard) {
-      this.selectedBoard.categories = this.selectedBoard.categories.filter((categoryElement) => category.id !== categoryElement.id);
+      this.selectedBoard.categories = this.selectedBoard.categories
+        .filter((categoryElement) => category.id !== categoryElement.id);
     }
   }
 
-  setTegFilter(tag:Tag) {
+  setTegFilter(tag: Tag) {
     this.tagFilter = tag;
   }
 
@@ -143,8 +140,10 @@ export class Store {
   }
 
   async changeNotePlace(placeHolder: PlaceHolder) {
-    const selectedCategory = this.selectedBoard!.categories.find((category) => category.id === placeHolder.categoryId);
-    const opendCategory = this.selectedBoard!.categories.find((category) => category.notes.some((el) => el.id === this.selectedNote?.id));
+    const selectedCategory = this.selectedBoard!.categories
+      .find((category) => category.id === placeHolder.categoryId);
+    const opendCategory = this.selectedBoard!.categories
+      .find((category) => category.notes.some((el) => el.id === this.selectedNote?.id));
 
     if (selectedCategory && opendCategory && this.selectedNote) {
       this.selectedNote.status = selectedCategory.name;
@@ -172,14 +171,16 @@ export class Store {
     }
   }
 
-  async deleteProperty(property:Property) {
+  async deleteProperty(property: Property) {
     if (this.selectedNote) {
       this.selectedNote.properties = this.selectedNote.properties.filter((propertyElement) => property.id !== propertyElement.id);
     }
   }
 
   async addComment(note: Note, title: string) {
-    note.comments.push(createComment(title));
+    if (this.selectedNote) {
+      this.selectedNote.comments.push(createComment(title));
+    }
   }
 
   async deleteComment(comment: Comments) {
@@ -201,7 +202,7 @@ export class Store {
     }
   }
 
-  async changePropertyTitle(title: string, property:Property) {
+  async changePropertyTitle(title: string, property: Property) {
     const selectedProperty = this.selectedNote?.properties.find(
       (propertyElement) => propertyElement.id === property.id,
     );
@@ -244,13 +245,13 @@ export class Store {
     }
   }
 
-  async updateBoardTitle(title:string) {
+  async updateBoardTitle(title: string) {
     if (this.selectedBoard) {
       this.selectedBoard.name = title;
     }
   }
 
-  async updateNoteTitle(title:string) {
+  async updateNoteTitle(title: string) {
     if (this.selectedNote && this.selectedBoard) {
       this.selectedNote.title = title;
     }
@@ -266,7 +267,7 @@ export class Store {
     }
   }
 
-  async deleteBoard(board:Board) {
+  async deleteBoard(board: Board) {
     if (this.selectedBoard) {
       this.user.boards = this.user.boards.filter((boardElement) => board.id !== boardElement.id);
       this.selectedBoardId = this.user.boards[0].id;
@@ -275,7 +276,7 @@ export class Store {
     }
   }
 
-  selectNote(note:Note) {
+  selectNote(note: Note) {
     this.selectedNote = note;
   }
 

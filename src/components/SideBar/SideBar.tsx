@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import styles from './SideBar.module.css';
 import { store } from '../../store/store';
@@ -8,11 +8,18 @@ import SideBarAddTitleButton from './SideBarAddTitleButton/SideBarAddTitleButton
 import Icon from '../Icon/Icon';
 import { Icons } from '../../enums/enums';
 import { isUserUsePhone } from '../../utils/utils';
+import { bigIconSize, commonIconSize } from '../../constants/const';
 
 const SideBar = observer(() => {
   const [isSideBarOpen, setSideBarState] = useState(!isUserUsePhone());
 
-  const boardsTitles = store.user.boards.map((board : Board) => <SideBarBoardTitle board={board} key={board.id} />);
+  const boardsTitles = useMemo(() => store.user.boards.map((board: Board) => (
+    <SideBarBoardTitle
+      board={board}
+      key={board.id}
+    />
+  )),
+  [store.user.boards]);
 
   function logOutClickHandler() {
     store.logOut();
@@ -28,7 +35,13 @@ const SideBar = observer(() => {
 
   if (!isSideBarOpen) {
     return (
-      <Icon iconType={Icons.Menu} iconSize={26} canHovered onClick={openSideBarClickHandler} iconContainerStyles={styles.side_bat_open_icon} />
+      <Icon
+        iconType={Icons.Menu}
+        iconSize={bigIconSize}
+        canHovered
+        onClick={openSideBarClickHandler}
+        iconContainerStyles={styles.side_bat_open_icon}
+      />
     );
   }
 
@@ -41,14 +54,14 @@ const SideBar = observer(() => {
           </div>
           <p className={styles.username}>{store.user.name}</p>
         </div>
-        <Icon iconType={Icons.LeftArrow} iconSize={16} iconContainerStyles={styles.close_icon} />
+        <Icon iconType={Icons.LeftArrow} iconSize={commonIconSize} iconContainerStyles={styles.close_icon} />
       </div>
       <div className={styles.board_titles_container}>
         { boardsTitles }
         <SideBarAddTitleButton />
       </div>
       <div className={styles.log_out_container} onClick={logOutClickHandler}>
-        <Icon iconType={Icons.LogOut} iconSize={16} />
+        <Icon iconType={Icons.LogOut} iconSize={commonIconSize} />
         <p className={styles.log_out_paragraph}>Log Out</p>
       </div>
     </div>

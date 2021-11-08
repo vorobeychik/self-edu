@@ -1,8 +1,7 @@
-import React, { } from 'react';
+import React, { useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
 import styles from './BoardCategory.module.css';
 import { Category, Note, PlaceHolder } from '../../../types/types';
-
 import { store } from '../../../store/store';
 import { createPlaceHolders } from '../../../utils/utils';
 import BoardCategoryNote from './BoardCategoryNote/BoardCategoryNote';
@@ -11,12 +10,13 @@ import EditableParagraph from '../../EditableParagraph/EditableParagraph';
 import { useHover } from '../../../hooks/useHover';
 import Icon from '../../Icon/Icon';
 import { Icons } from '../../../enums/enums';
+import { commonIconSize, mediumIconSize } from '../../../constants/const';
 
 interface BoardCategoryProps{
   category: Category;
 }
 
-const BoardCategory = observer(({ category }:BoardCategoryProps) => {
+const BoardCategory = observer(({ category }: BoardCategoryProps) => {
   const { isHover, mouseHoverEvents } = useHover();
 
   function noteDragStartHandler(event: React.DragEvent<HTMLDivElement>, note: Note) {
@@ -33,17 +33,18 @@ const BoardCategory = observer(({ category }:BoardCategoryProps) => {
   }
 
   const placeHolders = createPlaceHolders(category.notes.length, category.id);
-  const notes = category.notes.map((note, index) => (
+  const notes = useMemo(() => category.notes.map((note, index) => (
     <>
       <BoardCategoryPlaceHolder
-        dropHandler={(event:React.DragEvent<HTMLDivElement>) => noteDropHandler(event, placeHolders[index])}
+        dropHandler={(event: React.DragEvent<HTMLDivElement>) => noteDropHandler(event, placeHolders[index])}
       />
       <BoardCategoryNote
         note={note}
         dragStartHandler={(event) => noteDragStartHandler(event, note)}
+        key={note.id}
       />
     </>
-  ));
+  )), [category.notes]);
 
   function deleteCategoryButtonHandler() {
     store.deleteCategory(category);
@@ -66,8 +67,8 @@ const BoardCategory = observer(({ category }:BoardCategoryProps) => {
         {isHover
           ? (
             <div className={styles.title_button_container}>
-              <Icon iconSize={14} iconType={Icons.Plus} onClick={addButtonClickHandler} canHovered />
-              <Icon iconSize={14} iconType={Icons.Bin} onClick={deleteCategoryButtonHandler} canHovered />
+              <Icon iconSize={mediumIconSize} iconType={Icons.Plus} onClick={addButtonClickHandler} canHovered />
+              <Icon iconSize={mediumIconSize} iconType={Icons.Bin} onClick={deleteCategoryButtonHandler} canHovered />
             </div>
           )
           : null}
@@ -75,12 +76,12 @@ const BoardCategory = observer(({ category }:BoardCategoryProps) => {
       <div className={styles.notes_container}>
         {notes}
         <BoardCategoryPlaceHolder
-          dropHandler={(event:React.DragEvent<HTMLDivElement>) => noteDropHandler(event, placeHolders[category.notes.length])}
+          dropHandler={(event: React.DragEvent<HTMLDivElement>) => noteDropHandler(event, placeHolders[category.notes.length])}
         />
       </div>
       <div>
         <div onClick={addButtonClickHandler} className={styles.new_note_button}>
-          <Icon iconSize={16} iconType={Icons.Plus} />
+          <Icon iconSize={commonIconSize} iconType={Icons.Plus} />
           <p>New</p>
         </div>
       </div>

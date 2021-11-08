@@ -79,14 +79,14 @@
     background-color: #efefef;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
     .category{
         min-width: 35%;
         width: 35%;
     }
 }
 
-@media (max-width: 426px) {
+@media (max-width: 425px) {
     .category{
         min-width: 45%;
         width: 45%;
@@ -100,7 +100,7 @@
     }
 }
 
-@media (max-width: 321px) {
+@media (max-width: 320px) {
     .category{
         min-width: 60%;
         width: 60%;

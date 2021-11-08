@@ -5,6 +5,7 @@ import { Tag as TagType } from '../../types/types';
 import { store } from '../../store/store';
 import Icon from '../Icon/Icon';
 import { Icons } from '../../enums/enums';
+import { commonIconSize } from '../../constants/const';
 
 interface TagProps{
   tag: TagType,
@@ -12,8 +13,8 @@ interface TagProps{
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
-const Tag = observer(({ tag, isEditing, onClick }:TagProps) => {
-  function deleteTagClickHandler(event:React.MouseEvent<HTMLDivElement>) {
+const Tag = observer(({ tag, isEditing, onClick }: TagProps) => {
+  function deleteTagClickHandler(event: React.MouseEvent<HTMLDivElement>) {
     event.stopPropagation();
     store.deleteTag(tag);
   }
@@ -23,7 +24,7 @@ const Tag = observer(({ tag, isEditing, onClick }:TagProps) => {
       <div className={styles.container}>
         <span className={styles.tag_paragraph}>{tag.title}</span>
         {isEditing
-          ? <Icon iconType={Icons.Close} iconSize={16} onClick={deleteTagClickHandler} />
+          ? <Icon iconType={Icons.Close} iconSize={commonIconSize} onClick={deleteTagClickHandler} />
           : null}
       </div>
     </div>

@@ -5,6 +5,7 @@ import { Board } from '../../../types/types';
 import { store } from '../../../store/store';
 import Icon from '../../Icon/Icon';
 import { Icons } from '../../../enums/enums';
+import { commonIconSize, mediumIconSize } from '../../../constants/const';
 
 interface SideBarBoardTitleProps{
   board: Board
@@ -23,10 +24,10 @@ const SideBarBoardTitle = observer(({ board }: SideBarBoardTitleProps) => {
   return (
     <div className={styles.board_title_container} onClick={clickHandler}>
       <div className={styles.container}>
-        <Icon iconType={Icons.File} iconSize={14} />
+        <Icon iconType={Icons.File} iconSize={mediumIconSize} />
         <p className={styles.board_title_paragraph}>{ board.name }</p>
       </div>
-      <Icon iconType={Icons.Bin} iconSize={16} onClick={deleteBoardClickHandler} />
+      <Icon iconType={Icons.Bin} iconSize={commonIconSize} onClick={deleteBoardClickHandler} />
     </div>
   );
 });

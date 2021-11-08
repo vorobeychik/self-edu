@@ -4,10 +4,10 @@ import { observer } from 'mobx-react-lite';
 import styles from './BoardCategoryPlaceHolder.module.css';
 
 interface BoardCategoryPlaceHolderProps{
-  dropHandler: (event:React.DragEvent<HTMLDivElement>) => void | Promise<void>;
+  dropHandler: (event: React.DragEvent<HTMLDivElement>) => void | Promise<void>;
 }
 
-const BoardCategoryPlaceHolder = observer(({ dropHandler }:BoardCategoryPlaceHolderProps) => {
+const BoardCategoryPlaceHolder = observer(({ dropHandler }: BoardCategoryPlaceHolderProps) => {
   const [isDragOver, setIsDragOver] = useState(false);
 
   function placeHolderDragOverHandler(event: React.DragEvent<HTMLDivElement>) {
@@ -19,7 +19,7 @@ const BoardCategoryPlaceHolder = observer(({ dropHandler }:BoardCategoryPlaceHol
     setIsDragOver(false);
   }
 
-  function placeHolderDropHandler(event:React.DragEvent<HTMLDivElement>) {
+  function placeHolderDropHandler(event: React.DragEvent<HTMLDivElement>) {
     dropHandler(event);
     setIsDragOver(false);
   }

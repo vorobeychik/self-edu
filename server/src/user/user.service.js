@@ -1,14 +1,12 @@
 const axios = require("axios");
 const userModel = require('./user.model');
-const mongoose = require('mongoose');
-const { createBoard } = require('../boards/board.service');
 const { getBoards } = require('../boards/board.service');
 
 class UserService{
 
     async getGitHubAccessToken(code){
         const res = await axios.post(
-            `https://github.com/login/oauth/access_token?client_id=0cc07a1ee9b85c6d817e&code=${code}&client_secret=2c99a52849e62a4bd9795f6a92f958340f157fb9`,
+            `https://github.com/login/oauth/access_token?client_id=${process.env.CLIENT_GIT_ID}&code=${code}&client_secret=${process.env.CLIENT_SECRET}`,
         );
         return res.data;
     }
