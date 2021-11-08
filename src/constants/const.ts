@@ -36,7 +36,7 @@ export const year: Month[] = [
 export const initialState: User = {
   _id: '',
   boards: [{
-    id: '', name: '', type: '', categories: [],
+    id: '', name: '', categories: [],
   }],
   login: '',
   id: 0,
