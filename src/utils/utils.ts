@@ -133,7 +133,7 @@ export function deleteAllCookies(): void {
   }
 }
 
-export function insert(arr: any[], index: number, element: any) {
+export function insert(arr: any[], index: number, element: any): any[] {
   if (index === 0) {
     return [element, ...arr];
   } if (index === arr.length) {
